@@ -11,8 +11,37 @@ Ensure you have the following installed:
 - **Azure CLI** ([Installation Guide](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli))  
 - **Kubectl** ([Installation Guide](https://kubernetes.io/docs/tasks/tools/install-kubectl/))  
 - **Docker** ([Installation Guide](https://docs.docker.com/get-docker/))  
-- **Azure Kubernetes Service (AKS) cluster**  
-- **Admin access to your cluster**  
+- **Admin access to an Azure Kubernetes Service (AKS) cluster**  
+  - **If you already have an AKS cluster,** retrieve its credentials:
+    ```sh
+    az aks list --output table  # Check if an AKS cluster exists
+    az aks get-credentials --resource-group k8s-resource-group --name k8s-cluster
+    ```
+  - **If you don't have an AKS cluster, follow Step 0 below.**
+
+✅ **Confirm your cluster is running**:
+```sh
+kubectl get nodes
+```
+If nodes appear as `Ready`, your AKS cluster is set up correctly.
+
+---
+
+## **Step 0: Create an AKS Cluster (If Needed)**
+
+If you don't already have an AKS cluster, create one with the following commands:
+
+```sh
+az group create --name k8s-resource-group --location eastus
+az aks create --resource-group k8s-resource-group --name k8s-cluster --node-count 1 --enable-managed-identity --generate-ssh-keys
+```
+
+Retrieve cluster credentials:
+
+```sh
+az aks get-credentials --resource-group k8s-resource-group --name k8s-cluster
+kubectl get nodes  # Verify nodes are Ready
+```
 
 ---
 
