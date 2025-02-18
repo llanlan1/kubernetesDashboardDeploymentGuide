@@ -32,7 +32,7 @@ If nodes appear as `Ready`, your AKS cluster is set up correctly.
 If you don't already have an AKS cluster, create one with the following commands:
 
 ```sh
-az group create --name k8s-resource-group --location eastus
+az group create --name k8s-resource-group --location eastus #location of your choice
 az aks create --resource-group k8s-resource-group --name k8s-cluster --node-count 1 --enable-managed-identity --generate-ssh-keys
 ```
 
