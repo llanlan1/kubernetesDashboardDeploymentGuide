@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-dashboard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k8s-dashboard
+  template:
+    metadata:
+      labels:
+        app: k8s-dashboard
+    spec:
+      containers:
+        - name: k8s-dashboard
+          image: YOUR-DOCKERHUB-USERNAME/k8s-dashboard:v1 # Replace YOUR-DOCKERHUB-USERNAME
+          ports:
+            - containerPort: 80
